@@ -2,79 +2,118 @@ import 'package:flutter/material.dart';
 import 'package:my_first_app/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-    const HomeScreen({super.key});
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+    return DefaultTabController(
+      length: 3, // Number of tabs
+
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home Screen'),
+
+          // Add TabBar here
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.home),
+                text: 'Home',
               ),
-              child: Text(
-                'Welcome Kiran',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+              Tab(
+                icon: Icon(Icons.favorite),
+                text: 'Favorite',
+              ),
+              Tab(
+                icon: Icon(Icons.person),
+                text: 'Profile',
+              ),
+            ],
+          ),
+        ),
+
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text(
+                  'Welcome Kiran',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
                 ),
               ),
+
+              ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+
+        // Replace your body with TabBarView
+        body: const TabBarView(
+          children: [
+            Center(
+              child: Text(
+                'Home Tab',
+                style: TextStyle(fontSize: 24),
+              ),
             ),
 
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.pop(context); // Close Drawer
-              },
+            Center(
+              child: Text(
+                'Favorite Tab',
+                style: TextStyle(fontSize: 24),
+              ),
             ),
 
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SettingScreen(),
-                  ),
-                );
-              },
+            Center(
+              child: Text(
+                'Profile Tab',
+                style: TextStyle(fontSize: 24),
+              ),
             ),
           ],
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Column(
-          children: [
-            const Text(
-              'Home Screen',
-              style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Welcome to my first app',
-              style: TextStyle(fontSize: 24),
-            ),
-          ],
-        ), 
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingScreen()));
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SettingScreen(),
+              ),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
