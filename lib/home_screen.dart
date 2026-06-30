@@ -14,6 +14,45 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Welcome Kiran',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context); // Close Drawer
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
@@ -28,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 24),
             ),
           ],
-        ),
+        ), 
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
