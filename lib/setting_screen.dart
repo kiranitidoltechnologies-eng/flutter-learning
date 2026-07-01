@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/text_const.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
 
   @override
-  _SettingScreenState createState() => _SettingScreenState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
 class _SettingScreenState extends State<SettingScreen> {
@@ -12,10 +13,10 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setting Screen'),
+        title: const Text(TextConst.settingScreensTitle),
       ),
       body: const Center(
-        child: Text('Setting Screen'),
+        child: Text(TextConst.settingScreen),
       ),
     );
   }
