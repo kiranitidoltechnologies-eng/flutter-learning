@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/widgets/app_drawer_tile.dart';
+import 'package:my_first_app/widgets/common_tab_content.dart';
 import 'package:my_first_app/setting_screen.dart';
+import 'package:my_first_app/text_const.dart';
+import 'package:my_first_app/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,22 +20,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Home Screen'),
+          title: const Text(TextConst.homeScreen),
 
           // Add TabBar here
           bottom: const TabBar(
             tabs: [
               Tab(
                 icon: Icon(Icons.home),
-                text: 'Home',
+                text: TextConst.home,
               ),
               Tab(
                 icon: Icon(Icons.favorite),
-                text: 'Favorite',
+                text: TextConst.favorite,
               ),
               Tab(
                 icon: Icon(Icons.person),
-                text: 'Profile',
+                text: TextConst.profile,
               ),
             ],
           ),
@@ -42,28 +46,28 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: AppColors.background,
                 ),
                 child: Text(
-                  'Welcome Kiran',
+                  TextConst.welcomeKiran,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 24,
                   ),
                 ),
               ),
 
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
+              AppDrawerTile(
+                icon: Icons.home,
+                title: TextConst.home,
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
 
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
+              AppDrawerTile(
+                icon: Icons.settings,
+                title: TextConst.settings,
                 onTap: () {
                   Navigator.push(
                     context,
@@ -80,26 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
         // Replace your body with TabBarView
         body: const TabBarView(
           children: [
-            Center(
-              child: Text(
-                'Home Tab',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-
-            Center(
-              child: Text(
-                'Favorite Tab',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-
-            Center(
-              child: Text(
-                'Profile Tab',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
+            CommonTabContent(text: TextConst.homeTab),
+            CommonTabContent(text: TextConst.favoriteTab),
+            CommonTabContent(text: TextConst.profileTab),
           ],
         ),
 

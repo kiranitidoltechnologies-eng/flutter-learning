@@ -309,6 +309,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_first_app/home_screen.dart';
+import 'package:my_first_app/text_const.dart';
 
 void main() {
   runApp(
@@ -321,6 +322,7 @@ void main() {
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
+  @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
@@ -340,27 +342,27 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Form"),
+        title: const Text(TextConst.loginForm),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
             const Text(
-              "Login Form",
+              TextConst.loginForm,
               style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 20),
             TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
-                labelText: "Email",
+                labelText: TextConst.email,
               ),
             ),
             TextFormField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: "Password",
+                labelText: TextConst.password,
               ),
             ),
             // const SizedBox(height: 50),
@@ -370,7 +372,7 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
               },
-              child: const Text("Login"),
+              child: const Text(TextConst.login),
             ),
             )
           ],
